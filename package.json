@@ -1,0 +1,41 @@
+{
+  "name": "stream-chat",
+  "version": "0.0.1",
+  "description": "A chat app using streams",
+  "keywords": [],
+  "author": "Raynos <raynos2@gmail.com>",
+  "repository": "git://github.com/Raynos/stream-chat.git",
+  "main": "index",
+  "homepage": "https://github.com/Raynos/stream-chat",
+  "contributors": [
+    {
+      "name": "Jake Verbaten"
+    }
+  ],
+  "bugs": {
+    "url": "https://github.com/Raynos/stream-chat/issues",
+    "email": "raynos2@gmail.com"
+  },
+  "dependencies": {
+    "mux-demux-shoe": "~0.1.0",
+    "ecstatic": "~0.1.6",
+    "browserify": "~1.14.4",
+    "event-stream": "~2.1.8",
+    "through": "~0.1.2"
+  },
+  "devDependencies": {
+    "testling": "git://github.com/Raynos/testling#master",
+    "testem": "git://github.com/Raynos/testem#master",
+    "sinon": "git://github.com/Raynos/Sinon.JS.git",
+    "tap": "0.2.5"
+  },
+  "licenses": [
+    {
+      "type": "MIT",
+      "url": "http://github.com/Raynos/stream-chat/raw/master/LICENSE"
+    }
+  ],
+  "scripts": {
+    "test": "make node-test"
+  }
+}
