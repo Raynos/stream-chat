@@ -1,5 +1,5 @@
-var shoe = require("mux-demux-shoe")
-    , mdm = shoe("/shoe")
+var boot = require("boot")
+    , mdm = boot("/boot")
     , es = require("event-stream")
     , through = require("through")
     , EventEmitter = require("events").EventEmitter

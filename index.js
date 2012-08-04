@@ -1,5 +1,5 @@
 var http = require("http")
-    , shoe = require("mux-demux-shoe")
+    , boot = require("boot")
     , multiChannel = require("multi-channel-shoe")
     , browserify = require("browserify")
     , ecstatic = require("ecstatic")(__dirname + "/static")
@@ -23,8 +23,8 @@ var http = require("http")
 server.listen(8080)
 console.log("listening on port", 8080)
 
-var sock = shoe(multiChannel(function (stream) {
+var sock = boot(multiChannel(function (stream) {
     console.log("got a stream", stream.meta)
 }))
 
-sock.install(server, '/shoe');
+sock.install(server, '/boot');
