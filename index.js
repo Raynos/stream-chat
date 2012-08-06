@@ -38,7 +38,7 @@ function httpHandler(req, res) {
 
 function bundleBrowserify(req, res) {
     var b = browserify()
-    b.addEntry("client/index.js")
+    b.addEntry("browser.js")
     res.setHeader("content-type", "application/jsonn")
     try {
         res.end(b.bundle())
