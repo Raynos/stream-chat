@@ -2,6 +2,8 @@
 
 A chat app using streams
 
+## The interesting bits
+
 Demonstrates usage of 
 
  - [multi-channel-mdm][1]
