@@ -1,3 +1,6 @@
+// node support
+window.Buffer = require('buffer').Buffer;
+
 var boot = require("boot")
     , mdm = boot("/boot")
     , es = require("event-stream")
@@ -11,14 +14,12 @@ var roomDiv = document.createElement("div")
 
 var room = renderJoinRoom(roomJoinBar)
 room.on("join", function (roomName, userName) {
-    var roomStream = mdm.createStream("multi-channel-" + roomName)
+    var dataStream = mdm.createStream("/room/" + roomName)
     // Empty roomDiv
     roomDiv.textContent = ""
-    var pair = renderRoom(roomDiv, roomName, userName)
-        , write = pair[0]
-        , read = pair[1]
+    var uiStream = renderRoom(roomDiv, roomName, userName)
 
-    write.pipe(roomStream).pipe(read)
+    uiStream.pipe(dataStream).pipe(uiStream)
 })
 
 renderTitleAndLink(titleBar)
@@ -69,19 +70,12 @@ function renderRoom(root, roomName, userName) {
         , roomTitle = document.createElement("div")
         , chatBox = document.createElement("div")
         , read = through()
-        , write = through()
-
-    read.on("data", function (data) {
-        console.log("read from stream", data)
-        var chatMessage = document.createElement("div")
-        chatMessage.textContent = data.user + ": " + data.message
-        chatBox.appendChild(chatMessage)
-    })
+        , write = through(renderChatMessage)
 
     chatButton.textContent = "send message"
     chatButton.addEventListener("click", function () {
-        console.log("writing to stream")
-        write.write({
+        console.log("emitting data")
+        read.emit("data", {
             user: userName
             , message: chatText.value
         })
@@ -96,5 +90,12 @@ function renderRoom(root, roomName, userName) {
     root.appendChild(chatText)
     root.appendChild(chatButton)
 
-    return [write, read]
+    return es.duplex(write, read)
+
+    function renderChatMessage(data) {
+        console.log("writing data")
+        var chatMessage = document.createElement("div")
+        chatMessage.textContent = data.user + ": " + data.message
+        chatBox.appendChild(chatMessage)
+    }
 }
