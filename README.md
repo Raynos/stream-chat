@@ -1,6 +1,13 @@
-# stream-chat [![build status][1]][2]
+# stream-chat
 
 A chat app using streams
+
+Demonstrates usage of 
+
+ - multi-channel-mdm
+ - boot
+ - Routing on streams
+ - UI widgets as streams
 
 ## Contributors
 

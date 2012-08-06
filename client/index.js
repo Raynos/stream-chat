@@ -73,13 +73,7 @@ function renderRoom(root, roomName, userName) {
         , write = through(renderChatMessage)
 
     chatButton.textContent = "send message"
-    chatButton.addEventListener("click", function () {
-        console.log("emitting data")
-        read.emit("data", {
-            user: userName
-            , message: chatText.value
-        })
-    })
+    chatButton.addEventListener("click", emitChatMessage)
 
     roomTitle.textContent = roomName
 
@@ -97,5 +91,13 @@ function renderRoom(root, roomName, userName) {
         var chatMessage = document.createElement("div")
         chatMessage.textContent = data.user + ": " + data.message
         chatBox.appendChild(chatMessage)
+    }
+
+    function emitChatMessage() {
+        console.log("emitting data")
+        read.emit("data", {
+            user: userName
+            , message: chatText.value
+        })
     }
 }
