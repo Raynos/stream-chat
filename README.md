@@ -4,10 +4,11 @@ A chat app using streams
 
 Demonstrates usage of 
 
- - multi-channel-mdm
- - boot
- - Routing on streams
- - UI widgets as streams
+ - [multi-channel-mdm][1]
+ - [client-side boot][2]
+ - [server-side boot][3]
+ - [Routing on streams][3]
+ - [UI widgets as streams][4]
 
 ## Contributors
 
@@ -15,5 +16,8 @@ Demonstrates usage of
 
 ## MIT Licenced
 
-  [1]: https://secure.travis-ci.org/Raynos/stream-chat.png
-  [2]: http://travis-ci.org/Raynos/stream-chat
+  [1]: https://github.com/Raynos/stream-chat/blob/a3a4e7dcc869601c71f3454a883fb332830b6679/index.js#L18
+  [2]: https://github.com/Raynos/stream-chat/blob/a3a4e7dcc869601c71f3454a883fb332830b6679/browser.js#L5
+  [3]: https://github.com/Raynos/stream-chat/blob/a3a4e7dcc869601c71f3454a883fb332830b6679/index.js#L20
+  [4]: https://github.com/Raynos/stream-chat/blob/a3a4e7dcc869601c71f3454a883fb332830b6679/index.js#L18
+  [5]: https://github.com/Raynos/stream-chat/blob/a3a4e7dcc869601c71f3454a883fb332830b6679/browser.js#L87
