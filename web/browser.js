@@ -1,6 +1,3 @@
-// node support
-window.Buffer = require('buffer').Buffer;
-
 var boot = require("boot")
     , mdm = boot("/boot")
     , es = require("event-stream")
