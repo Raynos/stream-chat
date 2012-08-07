@@ -1,5 +1,5 @@
 var boot = require("boot")
-    , mdm = boot("/boot")
+    , mdm = boot("/stream/boot")
     , es = require("event-stream")
     , through = require("through")
     , EventEmitter = require("events").EventEmitter
@@ -12,6 +12,9 @@ var roomDiv = document.createElement("div")
 var room = renderJoinRoom(roomJoinBar)
 room.on("join", function (roomName, userName) {
     var dataStream = mdm.createStream("/room/" + roomName)
+    dataStream.on("data", function (d) {
+        console.log("data", JSON.parse(d))
+    })
     // Empty roomDiv
     roomDiv.textContent = ""
     var uiStream = renderRoom(roomDiv, roomName, userName)
@@ -84,6 +87,7 @@ function renderRoom(root, roomName, userName) {
     return es.duplex(write, read)
 
     function renderChatMessage(data) {
+        data = JSON.parse(data)
         console.log("writing data")
         var chatMessage = document.createElement("div")
         chatMessage.textContent = data.user + ": " + data.message
@@ -92,9 +96,9 @@ function renderRoom(root, roomName, userName) {
 
     function emitChatMessage() {
         console.log("emitting data")
-        read.emit("data", {
+        read.emit("data", JSON.stringify({
             user: userName
             , message: chatText.value
-        })
+        }))
     }
 }

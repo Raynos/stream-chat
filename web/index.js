@@ -3,6 +3,7 @@ var http = require("http")
     , ecstatic = require("ecstatic")(__dirname)
     , Router = require("routes").Router
     , ports = require("seaport").connect(10123)
+    , path = require("path")
 
 var httpRouter = new Router()
 httpRouter.addRoute("/", ecstatic)
@@ -10,7 +11,7 @@ httpRouter.addRoute("/bundle.js", bundleBrowserify)
 
 var server = http.createServer(httpHandler)
 
-ports.register("web.localhost", startServer)
+ports.service("web.localhost", startServer)
 
 function httpHandler(req, res) {
     var route = httpRouter.match(req.url)
@@ -21,7 +22,7 @@ function httpHandler(req, res) {
 
 function bundleBrowserify(req, res) {
     var b = browserify()
-    b.addEntry("browser.js")
+    b.addEntry(path.join(__dirname, "browser.js"))
     res.setHeader("content-type", "application/jsonn")
     try {
         res.end(b.bundle())
@@ -33,4 +34,5 @@ function bundleBrowserify(req, res) {
 
 function startServer(port, ready) {
     server.listen(port, ready)
+    console.log("web server listening on port", port)
 }
