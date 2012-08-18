@@ -1,4 +1,4 @@
-# stream-chat
+# [stream-chat][6]
 
 A chat app using streams
 
@@ -41,3 +41,4 @@ If your UI component is a stream then you can pipe it directly to another peer. 
   [3]: https://github.com/Raynos/stream-chat/blob/442dcea2971d1efe2727965d758cd3f1eb59919b/static/index.js#L52
   [4]: https://github.com/Raynos/stream-chat/blob/442dcea2971d1efe2727965d758cd3f1eb59919b/static/index.js#L60
   [5]: https://github.com/Raynos/stream-chat/blob/442dcea2971d1efe2727965d758cd3f1eb59919b/static/index.js#L60
+  [6]: https://github.com/Raynos/stream-chat
