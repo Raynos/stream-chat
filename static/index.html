@@ -1,0 +1,27 @@
+<html>
+    <head>
+        <title> Chat app </title>
+    </head>
+    <body>
+        <header>
+            <h1> Welcome to stream chat! </h1>
+            <h2><a href="https://github.com/Raynos/stream-chat"> Experimental distributed chat room build on streams & discovery-network </a></h2>
+        </header>
+        <fieldset>
+            <legend> Join Room </legend>
+            <input id="room-name" placeholder="room name" />
+            <input id="user-name" placeholder="user name" />
+            <button id="room-button"> join </button>
+        </fieldset>
+        <div id="chat-room" hidden>
+            <h2 id="room-title"></h2>
+            <div id="chat-content"></div>
+            <fieldset>
+                <legend> send message </legend>
+                <input id="chat-input" placeholder="chat message" />
+                <button id="chat-button"> send </button>
+            </fieldset>
+        </div>
+        <script src="bundle.js"></script>
+    </body>
+</html>

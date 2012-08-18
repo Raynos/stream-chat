@@ -1,10 +1,3 @@
-var mountie = require("mountie")
-    , seaport = require("seaport")
-    , ports = seaport.createServer()
+var browserifyServer = require("browserify-server")
 
-ports.listen(10123)
-console.log("seaport listening on port 10123")
-
-var server = mountie(ports)
-server.listen(8080)
-console.log("mountie listening on port 8080")
+browserifyServer.listen(__dirname, 8080)
