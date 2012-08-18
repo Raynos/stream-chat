@@ -6,6 +6,7 @@ var DiscoveryNetwork = require("discovery-network")
 
 var conn = Connection("http://discoverynetwork.co/service")
     , room
+    , rs
 
 conn.identify()
 
@@ -15,10 +16,13 @@ function openRoom(roomName, userName) {
     if (room) {
         room.destroy()
     }
-    
+    if (rs) {
+        rs.destroy()
+    }
+
     room = createRoom(roomName, userName)
 
-    RelayStreams(conn, "raynos/stream-chat/" + roomName, handleStream)
+    rs = RelayStreams(conn, "raynos/stream-chat/" + roomName, handleStream)
 
     function handleStream(remotePeerId, stream) {
         console.log("got stream", remotePeerId, stream)
