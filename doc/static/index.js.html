@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>index.js</title>
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+  <link rel="stylesheet" media="all" href="../doc-style.css" />
+  <script src="../doc-filelist.js"></script>
+  <script>
+    var relativeDir = '../', thisFile = 'static/index.js', defaultSidebar = true;
+  </script>
+  <script src="../doc-script.js"></script>
+</head>
+<body>
+  <div id="sidebar_wrapper">
+    <div id="sidebar_switch">
+      <span class="tree">Files</span>
+      <span class="headings">Headings</span>
+    </div>
+    <div id="tree"></div>
+    <div id="headings">
+    </div>
+  </div>
+  <div id="sidebar-toggle"></div>
+  <div id="container"><div class="background highlight"></div>
+<table cellpadding="0" cellspacing="0">
+  <tbody>
+      <tr>
+        <td class="docs">
+          <h1>index.js</h1>
+        </td>
+        <td class="code highlight"></td>
+      </tr>
+      <tr>
+        <td class="docs">
+<div class="pilwrap">
+  <a class="pilcrow" href="#section-1" id="section-1">&#182;</a>
+</div>
+<div class="dox">
+  <div class="summary"><p>Pre load the dependencies for this app.</p>
+  </div>
+  <div class="body"><p>You need a Connection to open a connection to the cloud based discovery network.</p>
+
+<p>You need a relayStreams to join a peer network and open streams to peer it's finds on your behalf</p>
+  </div>
+</div>
+        </td>
+        <td class="code highlight"><div class="highlight"><pre><span class="kd">var</span> <span class="nx">DiscoveryNetwork</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s2">&quot;discovery-network&quot;</span><span class="p">)</span>
+    <span class="p">,</span> <span class="nx">Connection</span> <span class="o">=</span> <span class="nx">DiscoveryNetwork</span><span class="p">.</span><span class="nx">Connection</span>
+    <span class="p">,</span> <span class="nx">RelayStreams</span> <span class="o">=</span> <span class="nx">DiscoveryNetwork</span><span class="p">.</span><span class="nx">RelayStreams</span>
+    <span class="p">,</span> <span class="nx">joinRoom</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s2">&quot;./components/joinRoom&quot;</span><span class="p">)</span>
+    <span class="p">,</span> <span class="nx">createRoom</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s2">&quot;./components/room&quot;</span><span class="p">)</span></pre></div>
+        </td>
+      </tr>
+      <tr>
+        <td class="docs">
+<div class="pilwrap">
+  <a class="pilcrow" href="#section-2" id="section-2">&#182;</a>
+</div>
+<div class="dox">
+  <div class="summary"><p>Your now connected to a discovery network in the cloud!</p>
+  </div>
+  <div class="body">
+  </div>
+</div>
+        </td>
+        <td class="code highlight"><div class="highlight"><pre><span class="kd">var</span> <span class="nx">conn</span> <span class="o">=</span> <span class="nx">Connection</span><span class="p">(</span><span class="s2">&quot;http://discoverynetwork.co/service&quot;</span><span class="p">)</span>
+    <span class="p">,</span> <span class="nx">room</span>
+    <span class="p">,</span> <span class="nx">rs</span></pre></div>
+        </td>
+      </tr>
+      <tr>
+        <td class="docs">
+<div class="pilwrap">
+  <a class="pilcrow" href="#section-3" id="section-3">&#182;</a>
+</div>
+<div class="dox">
+  <div class="summary"><p>You told the cloud that you exist! Well done</p>
+  </div>
+  <div class="body">
+  </div>
+</div>
+        </td>
+        <td class="code highlight"><div class="highlight"><pre><span class="nx">conn</span><span class="p">.</span><span class="nx">identify</span><span class="p">()</span></pre></div>
+        </td>
+      </tr>
+      <tr>
+        <td class="docs">
+<div class="pilwrap">
+  <a class="pilcrow" href="#section-4" id="section-4">&#182;</a>
+</div>
+<div class="dox">
+  <div class="summary"><p>Wait for the UI component to notify you of a join event</p>
+  </div>
+  <div class="body">
+  </div>
+</div>
+        </td>
+        <td class="code highlight"><div class="highlight"><pre><span class="nx">joinRoom</span><span class="p">.</span><span class="nx">on</span><span class="p">(</span><span class="s2">&quot;join&quot;</span><span class="p">,</span> <span class="nx">openRoom</span><span class="p">)</span>
+
+<span class="kd">function</span> <span class="nx">openRoom</span><span class="p">(</span><span class="nx">roomName</span><span class="p">,</span> <span class="nx">userName</span><span class="p">)</span> <span class="p">{</span></pre></div>
+        </td>
+      </tr>
+      <tr>
+        <td class="docs">
+<div class="pilwrap">
+  <a class="pilcrow" href="#section-5" id="section-5">&#182;</a>
+</div>
+<div class="dox">
+  <div class="summary"><p>If we had an open room or rs destroy those</p>
+  </div>
+  <div class="body">
+  </div>
+</div>
+        </td>
+        <td class="code highlight"><div class="highlight"><pre>    <span class="k">if</span> <span class="p">(</span><span class="nx">room</span><span class="p">)</span> <span class="p">{</span>
+        <span class="nx">room</span><span class="p">.</span><span class="nx">destroy</span><span class="p">()</span>
+    <span class="p">}</span>
+    <span class="k">if</span> <span class="p">(</span><span class="nx">rs</span><span class="p">)</span> <span class="p">{</span>
+        <span class="nx">rs</span><span class="p">.</span><span class="nx">destroy</span><span class="p">()</span>
+    <span class="p">}</span></pre></div>
+        </td>
+      </tr>
+      <tr>
+        <td class="docs">
+<div class="pilwrap">
+  <a class="pilcrow" href="#section-6" id="section-6">&#182;</a>
+</div>
+<div class="dox">
+  <div class="summary"><p>Create a room UI component</p>
+  </div>
+  <div class="body">
+  </div>
+</div>
+        </td>
+        <td class="code highlight"><div class="highlight"><pre>    <span class="nx">room</span> <span class="o">=</span> <span class="nx">createRoom</span><span class="p">(</span><span class="nx">roomName</span><span class="p">,</span> <span class="nx">userName</span><span class="p">)</span></pre></div>
+        </td>
+      </tr>
+      <tr>
+        <td class="docs">
+<div class="pilwrap">
+  <a class="pilcrow" href="#section-7" id="section-7">&#182;</a>
+</div>
+<div class="dox">
+  <div class="summary"><p>connect to the relay network for raynos/stream-chat/:roomName.</p>
+  </div>
+  <div class="body"><p>You will be notified of any peers in that relay network and will estabilish peer to peer connectiosn with them</p>
+  </div>
+</div>
+        </td>
+        <td class="code highlight"><div class="highlight"><pre>    <span class="nx">rs</span> <span class="o">=</span> <span class="nx">RelayStreams</span><span class="p">(</span><span class="nx">conn</span><span class="p">,</span> <span class="s2">&quot;raynos/stream-chat/&quot;</span> <span class="o">+</span> <span class="nx">roomName</span><span class="p">,</span> <span class="nx">handleStream</span><span class="p">)</span>
+
+    <span class="kd">function</span> <span class="nx">handleStream</span><span class="p">(</span><span class="nx">remotePeerId</span><span class="p">,</span> <span class="nx">stream</span><span class="p">)</span> <span class="p">{</span></pre></div>
+        </td>
+      </tr>
+      <tr>
+        <td class="docs">
+<div class="pilwrap">
+  <a class="pilcrow" href="#section-8" id="section-8">&#182;</a>
+</div>
+<div class="dox">
+  <div class="summary"><p>You estabilished a peer to peer connection with the peer identified by it's remotePeerId. You now have a node stream directly to him.</p>
+  </div>
+  <div class="body"><p>We are just going to pipe our room into him which is also a stream.</p>
+  </div>
+</div>
+        </td>
+        <td class="code highlight"><div class="highlight"><pre>        <span class="nx">room</span><span class="p">.</span><span class="nx">pipe</span><span class="p">(</span><span class="nx">stream</span><span class="p">).</span><span class="nx">pipe</span><span class="p">(</span><span class="nx">room</span><span class="p">,</span> <span class="p">{</span>
+            <span class="nx">end</span><span class="o">:</span> <span class="kc">false</span>
+        <span class="p">})</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+        </td>
+      </tr>
+  </tbody>
+</table>
+  </div>
+</body>
+</html>

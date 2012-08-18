@@ -17,6 +17,9 @@ roomField.addEventListener("keyup", checkEnter)
 
 module.exports = room
 
+/*
+    When a user clicks the button just grab the data from the DOM and emit the join event
+*/
 function join() {
     var roomName = roomField.value
         , userName = userField.value

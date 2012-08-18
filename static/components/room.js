@@ -10,6 +10,9 @@ var chatRoom = document.getElementById("chat-room")
 module.exports = createRoom
 
 function createRoom(roomName, userName) {
+    /*
+        The room is a stream which will renderMessage for every incoming chunk of data
+    */
     var room = through(renderMessage, noop)
 
     chatRoom.hidden = false
@@ -28,26 +31,34 @@ function createRoom(roomName, userName) {
         }
     }
 
+    /*
+        When a user sends a message just emit this data on the room stream. Since we piped the room into our peers it will go directly to them and invoke renderMessage in their browsers!
+    */
     function sendMessage() {
         var text = chatField.value
 
         chatField.value = ""
 
-        console.log("outgoing data", text)
         room.emit("data", {
             message: text
             , user: userName
         })
 
-        console.log("local render")
+        /*
+            Make sure to render this message locally
+        */
         renderMessage({
             message: text
             , user: "you"
         })
     }
 
+    /*
+        when we get incoming data from another peer, remember we piped the peer stream into this room.
+
+        We will simply render the user's name and message and append that to the chat content
+    */
     function renderMessage(data) {
-        console.log("incoming renders", data)
         var message = data.user + ": " + data.message
             , elem = document.createElement("div")
 
@@ -56,6 +67,9 @@ function createRoom(roomName, userName) {
         chatContent.appendChild(elem)
     }
 
+    /*
+        Make sure to cleanup all your resources and DOM hooks
+    */
     function destroy() {
         chatRoom.hidden = true
         roomTitle.textContent = ""

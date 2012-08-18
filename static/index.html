@@ -1,24 +1,30 @@
+<!DOCTYPE html>
 <html>
+    <!-- Welcome to stream chat! -->
     <head>
         <title> Chat app </title>
     </head>
     <body>
+        <!-- You should totally click that link -->
         <header>
             <h1> Welcome to stream chat! </h1>
             <h2><a href="https://github.com/Raynos/stream-chat"> Experimental distributed chat room build on streams & discovery-network </a></h2>
         </header>
+        <!-- Joining a room is pretty sweet, try the javascript room -->
         <fieldset>
             <legend> Join Room </legend>
             <input id="room-name" placeholder="room name" />
             <input id="user-name" placeholder="user name" />
             <button id="room-button"> join </button>
         </fieldset>
+        <!-- chatting is fun too -->
         <div id="chat-room" hidden>
             <h2 id="room-title"></h2>
             <div id="chat-content"></div>
             <fieldset>
                 <legend> send message </legend>
                 <input id="chat-input" placeholder="chat message" />
+                <!-- send messages! do it! -->
                 <button id="chat-button"> send </button>
             </fieldset>
         </div>
