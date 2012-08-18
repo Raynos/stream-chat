@@ -1,10 +1,13 @@
 {
   "name": "stream-chat",
-  "version": "0.0.1",
+  "version": "0.0.1-2",
   "description": "A chat app using streams",
   "keywords": [],
   "author": "Raynos <raynos2@gmail.com>",
-  "repository": "git://github.com/Raynos/stream-chat.git",
+  "repository": {
+    "type": "git",
+    "url": "http://github.com/Raynos/stream-chat"
+  },
   "main": "index",
   "homepage": "https://github.com/Raynos/stream-chat",
   "contributors": [
