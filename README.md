@@ -36,8 +36,8 @@ If your UI component is a stream then you can pipe it directly to another peer. 
 
 ## MIT Licenced
 
-  [1]: https://github.com/Raynos/stream-chat/blob/master/index.js#L1
-  [2]: https://github.com/Raynos/stream-chat/blob/master/static/index.js#L7
-  [3]: https://github.com/Raynos/stream-chat/blob/master/static/index.js#L21
-  [4]: https://github.com/Raynos/stream-chat/blob/master/static/index.js#L23
-  [5]: https://github.com/Raynos/stream-chat/blob/master/static/components/room.js#L13
+  [1]: https://github.com/Raynos/stream-chat/blob/442dcea2971d1efe2727965d758cd3f1eb59919b/index.js#L6
+  [2]: https://github.com/Raynos/stream-chat/blob/442dcea2971d1efe2727965d758cd3f1eb59919b/static/index.js#L17
+  [3]: https://github.com/Raynos/stream-chat/blob/442dcea2971d1efe2727965d758cd3f1eb59919b/static/index.js#L52
+  [4]: https://github.com/Raynos/stream-chat/blob/442dcea2971d1efe2727965d758cd3f1eb59919b/static/index.js#L60
+  [5]: https://github.com/Raynos/stream-chat/blob/442dcea2971d1efe2727965d758cd3f1eb59919b/static/index.js#L60
