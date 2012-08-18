@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>README.md</title>
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+  <link rel="stylesheet" media="all" href="doc-style.css" />
+  <script src="doc-filelist.js"></script>
+  <script>
+    var relativeDir = '', thisFile = 'README.md', defaultSidebar = true;
+  </script>
+  <script src="doc-script.js"></script>
+</head>
+<body>
+  <div id="sidebar_wrapper">
+    <div id="sidebar_switch">
+      <span class="tree">Files</span>
+      <span class="headings">Headings</span>
+    </div>
+    <div id="tree"></div>
+    <div id="headings">
+      <div class="heading h1">
+        <a href="#stream-chat">stream-chat</a>
+      </div>
+      <div class="heading h2">
+        <a href="#the-interesting-bits">The interesting bits</a>
+      </div>
+      <div class="heading h1">
+        <a href="#the-server-is-a-static-file-server">The server is a static file server</a>
+      </div>
+      <div class="heading h1">
+        <a href="#connections-to-the-discovery-network">Connections to the discovery network</a>
+      </div>
+      <div class="heading h1">
+        <a href="#open-relay-streams-to-a-named-relay-network">Open relay streams to a named relay network</a>
+      </div>
+      <div class="heading h1">
+        <a href="#manipulate-direct-stream-connections-to-peers">Manipulate direct stream connections to peers</a>
+      </div>
+      <div class="heading h1">
+        <a href="#your-ui-component-is-a-stream">Your UI component is a stream</a>
+      </div>
+      <div class="heading h1">
+        <a href="#start-building-distributed-apps-on-the-cloud-today-">Start building distributed apps on the cloud today!</a>
+      </div>
+      <div class="heading h2">
+        <a href="#contributors">Contributors</a>
+      </div>
+      <div class="heading h2">
+        <a href="#mit-licenced">MIT Licenced</a>
+      </div>
+    </div>
+  </div>
+  <div id="sidebar-toggle"></div>
+  <div id="container"><div class="docs markdown">
+<div class="pilwrap" id="stream-chat">
+  <h1>
+    <a href="#stream-chat" class="pilcrow">&#182;</a>
+    stream-chat
+  </h1>
+</div>
+
+
+<p>A chat app using streams</p>
+
+<p>Live at: <a href='http://raynos.stream-chat.jit.su/'>http://raynos.stream-chat.jit.su/</a></p>
+
+
+<div class="pilwrap" id="the-interesting-bits">
+  <h2>
+    <a href="#the-interesting-bits" class="pilcrow">&#182;</a>
+    The interesting bits
+  </h2>
+</div>
+
+
+<p>Demonstrates usage of using discoverynetwork.co to build distributed apps</p>
+
+
+<div class="pilwrap" id="the-server-is-a-static-file-server">
+  <h1>
+    <a href="#the-server-is-a-static-file-server" class="pilcrow">&#182;</a>
+    <a href="https://github.com/Raynos/stream-chat/blob/442dcea2971d1efe2727965d758cd3f1eb59919b/index.js#L6">The server is a static file server</a>
+  </h1>
+</div>
+
+
+<p>Distributed peer to peer apps are served from static file servers and use a discovery network in the cloud to establish peer to peer connections (through a relay server due to browser limitations)</p>
+
+
+<div class="pilwrap" id="connections-to-the-discovery-network">
+  <h1>
+    <a href="#connections-to-the-discovery-network" class="pilcrow">&#182;</a>
+    <a href="https://github.com/Raynos/stream-chat/blob/442dcea2971d1efe2727965d758cd3f1eb59919b/static/index.js#L17">Connections to the discovery network</a>
+  </h1>
+</div>
+
+
+<p>Open a connection to a cloud based discovery network. Then simply discover your peers and open connections to them</p>
+
+
+<div class="pilwrap" id="open-relay-streams-to-a-named-relay-network">
+  <h1>
+    <a href="#open-relay-streams-to-a-named-relay-network" class="pilcrow">&#182;</a>
+    <a href="https://github.com/Raynos/stream-chat/blob/442dcea2971d1efe2727965d758cd3f1eb59919b/static/index.js#L52">Open relay streams to a named relay network</a>
+  </h1>
+</div>
+
+
+<p>Once you have a connection to the discovery network you can open a fresh named connection to a relay network. Each relay network has a unique name and only contains the peers attached to that unique name.</p>
+
+
+<div class="pilwrap" id="manipulate-direct-stream-connections-to-peers">
+  <h1>
+    <a href="#manipulate-direct-stream-connections-to-peers" class="pilcrow">&#182;</a>
+    <a href="https://github.com/Raynos/stream-chat/blob/442dcea2971d1efe2727965d758cd3f1eb59919b/static/index.js#L60">Manipulate direct stream connections to peers</a>
+  </h1>
+</div>
+
+
+<p>When a peer enters the network you get a direct stream connection to him. Now just talk to him!</p>
+
+
+<div class="pilwrap" id="your-ui-component-is-a-stream">
+  <h1>
+    <a href="#your-ui-component-is-a-stream" class="pilcrow">&#182;</a>
+    <a href="https://github.com/Raynos/stream-chat/blob/442dcea2971d1efe2727965d758cd3f1eb59919b/static/index.js#L60">Your UI component is a stream</a>
+  </h1>
+</div>
+
+
+<p>If your UI component is a stream then you can pipe it directly to another peer. Once you get data from that peer simply render it. If you have data to send to the peer simply emit it.</p>
+
+
+<div class="pilwrap" id="start-building-distributed-apps-on-the-cloud-today-">
+  <h1>
+    <a href="#start-building-distributed-apps-on-the-cloud-today-" class="pilcrow">&#182;</a>
+    Start building distributed apps on the cloud today!
+  </h1>
+</div>
+
+
+
+<div class="pilwrap" id="contributors">
+  <h2>
+    <a href="#contributors" class="pilcrow">&#182;</a>
+    Contributors
+  </h2>
+</div>
+
+
+<ul>
+<li>Raynos</li>
+</ul>
+
+
+<div class="pilwrap" id="mit-licenced">
+  <h2>
+    <a href="#mit-licenced" class="pilcrow">&#182;</a>
+    MIT Licenced
+  </h2>
+</div>
+</div>
+  </div>
+</body>
+</html>

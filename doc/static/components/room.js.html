@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>room.js</title>
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+  <link rel="stylesheet" media="all" href="../../doc-style.css" />
+  <script src="../../doc-filelist.js"></script>
+  <script>
+    var relativeDir = '../../', thisFile = 'static/components/room.js', defaultSidebar = true;
+  </script>
+  <script src="../../doc-script.js"></script>
+</head>
+<body>
+  <div id="sidebar_wrapper">
+    <div id="sidebar_switch">
+      <span class="tree">Files</span>
+      <span class="headings">Headings</span>
+    </div>
+    <div id="tree"></div>
+    <div id="headings">
+    </div>
+  </div>
+  <div id="sidebar-toggle"></div>
+  <div id="container"><div class="background highlight"></div>
+<table cellpadding="0" cellspacing="0">
+  <tbody>
+      <tr>
+        <td class="docs">
+          <h1>room.js</h1>
+        </td>
+        <td class="code highlight"></td>
+      </tr>
+      <tr>
+        <td class="docs">
+<div class="pilwrap">
+  <a class="pilcrow" href="#section-1" id="section-1">&#182;</a>
+</div>
+
+        </td>
+        <td class="code highlight"><div class="highlight"><pre><span class="kd">var</span> <span class="nx">through</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s2">&quot;through&quot;</span><span class="p">)</span>
+    <span class="p">,</span> <span class="nx">ENTER</span> <span class="o">=</span> <span class="mi">13</span>
+
+<span class="kd">var</span> <span class="nx">chatRoom</span> <span class="o">=</span> <span class="nb">document</span><span class="p">.</span><span class="nx">getElementById</span><span class="p">(</span><span class="s2">&quot;chat-room&quot;</span><span class="p">)</span>
+    <span class="p">,</span> <span class="nx">roomTitle</span> <span class="o">=</span> <span class="nb">document</span><span class="p">.</span><span class="nx">getElementById</span><span class="p">(</span><span class="s2">&quot;room-title&quot;</span><span class="p">)</span>
+    <span class="p">,</span> <span class="nx">chatContent</span> <span class="o">=</span> <span class="nb">document</span><span class="p">.</span><span class="nx">getElementById</span><span class="p">(</span><span class="s2">&quot;chat-content&quot;</span><span class="p">)</span>
+    <span class="p">,</span> <span class="nx">chatField</span> <span class="o">=</span> <span class="nb">document</span><span class="p">.</span><span class="nx">getElementById</span><span class="p">(</span><span class="s2">&quot;chat-input&quot;</span><span class="p">)</span>
+    <span class="p">,</span> <span class="nx">chatButton</span> <span class="o">=</span> <span class="nb">document</span><span class="p">.</span><span class="nx">getElementById</span><span class="p">(</span><span class="s2">&quot;chat-button&quot;</span><span class="p">)</span>
+
+<span class="nx">module</span><span class="p">.</span><span class="nx">exports</span> <span class="o">=</span> <span class="nx">createRoom</span>
+
+<span class="kd">function</span> <span class="nx">createRoom</span><span class="p">(</span><span class="nx">roomName</span><span class="p">,</span> <span class="nx">userName</span><span class="p">)</span> <span class="p">{</span></pre></div>
+        </td>
+      </tr>
+      <tr>
+        <td class="docs">
+<div class="pilwrap">
+  <a class="pilcrow" href="#section-2" id="section-2">&#182;</a>
+</div>
+<div class="dox">
+  <div class="summary"><p>The room is a stream which will renderMessage for every incoming chunk of data</p>
+  </div>
+  <div class="body">
+  </div>
+</div>
+        </td>
+        <td class="code highlight"><div class="highlight"><pre>    <span class="kd">var</span> <span class="nx">room</span> <span class="o">=</span> <span class="nx">through</span><span class="p">(</span><span class="nx">renderMessage</span><span class="p">,</span> <span class="nx">noop</span><span class="p">)</span>
+
+    <span class="nx">chatRoom</span><span class="p">.</span><span class="nx">hidden</span> <span class="o">=</span> <span class="kc">false</span>
+    <span class="nx">roomTitle</span><span class="p">.</span><span class="nx">textContent</span> <span class="o">=</span> <span class="s2">&quot;Room: &quot;</span> <span class="o">+</span> <span class="nx">roomName</span>
+
+    <span class="nx">chatField</span><span class="p">.</span><span class="nx">addEventListener</span><span class="p">(</span><span class="s2">&quot;keyup&quot;</span><span class="p">,</span> <span class="nx">checkEnter</span><span class="p">)</span>
+    <span class="nx">chatButton</span><span class="p">.</span><span class="nx">addEventListener</span><span class="p">(</span><span class="s2">&quot;click&quot;</span><span class="p">,</span> <span class="nx">sendMessage</span><span class="p">)</span>
+
+    <span class="nx">room</span><span class="p">.</span><span class="nx">on</span><span class="p">(</span><span class="s2">&quot;close&quot;</span><span class="p">,</span> <span class="nx">destroy</span><span class="p">)</span>
+
+    <span class="k">return</span> <span class="nx">room</span>
+
+    <span class="kd">function</span> <span class="nx">checkEnter</span><span class="p">(</span><span class="nx">event</span><span class="p">)</span> <span class="p">{</span>
+        <span class="k">if</span> <span class="p">(</span><span class="nx">event</span><span class="p">.</span><span class="nx">which</span> <span class="o">===</span> <span class="nx">ENTER</span><span class="p">)</span> <span class="p">{</span>
+            <span class="nx">sendMessage</span><span class="p">()</span>
+        <span class="p">}</span>
+    <span class="p">}</span></pre></div>
+        </td>
+      </tr>
+      <tr>
+        <td class="docs">
+<div class="pilwrap">
+  <a class="pilcrow" href="#section-3" id="section-3">&#182;</a>
+</div>
+<div class="dox">
+  <div class="summary"><p>When a user sends a message just emit this data on the room stream. Since we piped the room into our peers it will go directly to them and invoke renderMessage in their browsers!</p>
+  </div>
+  <div class="body">
+  </div>
+</div>
+        </td>
+        <td class="code highlight"><div class="highlight"><pre>    <span class="kd">function</span> <span class="nx">sendMessage</span><span class="p">()</span> <span class="p">{</span>
+        <span class="kd">var</span> <span class="nx">text</span> <span class="o">=</span> <span class="nx">chatField</span><span class="p">.</span><span class="nx">value</span>
+
+        <span class="nx">chatField</span><span class="p">.</span><span class="nx">value</span> <span class="o">=</span> <span class="s2">&quot;&quot;</span>
+
+        <span class="nx">room</span><span class="p">.</span><span class="nx">emit</span><span class="p">(</span><span class="s2">&quot;data&quot;</span><span class="p">,</span> <span class="p">{</span>
+            <span class="nx">message</span><span class="o">:</span> <span class="nx">text</span>
+            <span class="p">,</span> <span class="nx">user</span><span class="o">:</span> <span class="nx">userName</span>
+        <span class="p">})</span></pre></div>
+        </td>
+      </tr>
+      <tr>
+        <td class="docs">
+<div class="pilwrap">
+  <a class="pilcrow" href="#section-4" id="section-4">&#182;</a>
+</div>
+<div class="dox">
+  <div class="summary"><p>Make sure to render this message locally</p>
+  </div>
+  <div class="body">
+  </div>
+</div>
+        </td>
+        <td class="code highlight"><div class="highlight"><pre>        <span class="nx">renderMessage</span><span class="p">({</span>
+            <span class="nx">message</span><span class="o">:</span> <span class="nx">text</span>
+            <span class="p">,</span> <span class="nx">user</span><span class="o">:</span> <span class="s2">&quot;you&quot;</span>
+        <span class="p">})</span>
+    <span class="p">}</span></pre></div>
+        </td>
+      </tr>
+      <tr>
+        <td class="docs">
+<div class="pilwrap">
+  <a class="pilcrow" href="#section-5" id="section-5">&#182;</a>
+</div>
+<div class="dox">
+  <div class="summary"><p>when we get incoming data from another peer, remember we piped the peer stream into this room.</p>
+  </div>
+  <div class="body"><p>We will simply render the user's name and message and append that to the chat content</p>
+  </div>
+</div>
+        </td>
+        <td class="code highlight"><div class="highlight"><pre>    <span class="kd">function</span> <span class="nx">renderMessage</span><span class="p">(</span><span class="nx">data</span><span class="p">)</span> <span class="p">{</span>
+        <span class="kd">var</span> <span class="nx">message</span> <span class="o">=</span> <span class="nx">data</span><span class="p">.</span><span class="nx">user</span> <span class="o">+</span> <span class="s2">&quot;: &quot;</span> <span class="o">+</span> <span class="nx">data</span><span class="p">.</span><span class="nx">message</span>
+            <span class="p">,</span> <span class="nx">elem</span> <span class="o">=</span> <span class="nb">document</span><span class="p">.</span><span class="nx">createElement</span><span class="p">(</span><span class="s2">&quot;div&quot;</span><span class="p">)</span>
+
+        <span class="nx">elem</span><span class="p">.</span><span class="nx">textContent</span> <span class="o">=</span> <span class="nx">message</span>
+
+        <span class="nx">chatContent</span><span class="p">.</span><span class="nx">appendChild</span><span class="p">(</span><span class="nx">elem</span><span class="p">)</span>
+    <span class="p">}</span></pre></div>
+        </td>
+      </tr>
+      <tr>
+        <td class="docs">
+<div class="pilwrap">
+  <a class="pilcrow" href="#section-6" id="section-6">&#182;</a>
+</div>
+<div class="dox">
+  <div class="summary"><p>Make sure to cleanup all your resources and DOM hooks</p>
+  </div>
+  <div class="body">
+  </div>
+</div>
+        </td>
+        <td class="code highlight"><div class="highlight"><pre>    <span class="kd">function</span> <span class="nx">destroy</span><span class="p">()</span> <span class="p">{</span>
+        <span class="nx">chatRoom</span><span class="p">.</span><span class="nx">hidden</span> <span class="o">=</span> <span class="kc">true</span>
+        <span class="nx">roomTitle</span><span class="p">.</span><span class="nx">textContent</span> <span class="o">=</span> <span class="s2">&quot;&quot;</span>
+        <span class="nx">chatContent</span><span class="p">.</span><span class="nx">textContent</span> <span class="o">=</span> <span class="s2">&quot;&quot;</span>
+        <span class="nx">chatField</span><span class="p">.</span><span class="nx">value</span> <span class="o">=</span> <span class="s2">&quot;&quot;</span>
+        <span class="nx">chatField</span><span class="p">.</span><span class="nx">removeEventListener</span><span class="p">(</span><span class="s2">&quot;keyup&quot;</span><span class="p">,</span> <span class="nx">checkEnter</span><span class="p">)</span>
+        <span class="nx">chatButton</span><span class="p">.</span><span class="nx">removeEventListener</span><span class="p">(</span><span class="s2">&quot;click&quot;</span><span class="p">,</span> <span class="nx">sendMessage</span><span class="p">)</span>
+        <span class="nx">room</span><span class="p">.</span><span class="nx">removeListener</span><span class="p">(</span><span class="s2">&quot;close&quot;</span><span class="p">,</span> <span class="nx">destroy</span><span class="p">)</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+
+<span class="kd">function</span> <span class="nx">noop</span><span class="p">()</span> <span class="p">{}</span>
+</pre></div>
+        </td>
+      </tr>
+  </tbody>
+</table>
+  </div>
+</body>
+</html>
