@@ -33,11 +33,13 @@ function createRoom(roomName, userName) {
 
         chatField.value = ""
 
+        console.log("outgoing data", text)
         room.emit("data", {
             message: text
             , user: userName
         })
 
+        console.log("local render")
         renderMessage({
             message: text
             , user: "you"
@@ -45,6 +47,7 @@ function createRoom(roomName, userName) {
     }
 
     function renderMessage(data) {
+        console.log("incoming renders", data)
         var message = data.user + ": " + data.message
             , elem = document.createElement("div")
 
@@ -58,6 +61,9 @@ function createRoom(roomName, userName) {
         roomTitle.textContent = ""
         chatContent.textContent = ""
         chatField.value = ""
+        chatField.removeEventListener("keyup", checkEnter)
+        chatButton.removeEventListener("click", sendMessage)
+        room.removeListener("close", destroy)
     }
 }
 

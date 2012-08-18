@@ -26,6 +26,9 @@ function openRoom(roomName, userName) {
 
     function handleStream(remotePeerId, stream) {
         console.log("got stream", remotePeerId, stream)
+        stream.on('data', function (d) {
+            console.log("incoming data", d)
+        })
         room.pipe(stream).pipe(room, {
             end: false
         })
